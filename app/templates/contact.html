@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <form method="POST" action="{{ url_for('contact') }}">
+        {{ form.csrf_token }} 
+        <div>
+            {{ form.name.label }}  {{form.name}}
+        </div>
+        <div>
+            {{ form.email.label }}  {{form.email(placeholder="brownjohn@example.com")}}
+        </div>
+        <div>
+            {{ form.subject.label }}  {{form.subject}}
+        </div>
+        <div>
+            {{ form.message.label }}  {{form.message}}
+        </div>
+        
+
+        <button type="submit">Go</button>
+       </form>
+    {% endblock %}

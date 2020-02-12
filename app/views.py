@@ -6,7 +6,14 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session, abort
+
+# Note: that when using Flask-WTF we need to import the Form Class that we created
+# in forms.py
+from .forms import ContactForm
+from app import mail
+from flask_mail import Message
+
 
 
 ###
@@ -23,6 +30,25 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+#ask sir about this 
+@app.route('/contact',methods=['POST','GET'])
+def  contact():
+    myform =ContactForm()
+    if request.method=='POST' and myform.validate_on_submit():
+        name=myform.name.data
+        message= myform.message.data
+        subject=myform.subject.data
+        email=myform.email.data
+        msg = Message(subject, sender=("Jordanne Dale","dalejordanne@gmail.com"),recipients=[email])
+        msg.body = message
+        mail.send(msg) 
+        flash('Message sent')
+        return redirect('/')
+
+    """Render the website's about page."""
+    return render_template('contact.html', form=myform)
+
 
 
 ###
