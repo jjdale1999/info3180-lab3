@@ -40,12 +40,12 @@ def  contact():
         message= myform.message.data
         subject=myform.subject.data
         email=myform.email.data
-        msg = Message(subject, sender=("Jordanne Dale","dalejordanne@gmail.com"),recipients=[email])
+        msg = Message(subject, sender=("Jordanne Dale","djordanne@gmail.com"),recipients=[email])
         msg.body = message
         mail.send(msg) 
         flash('Message sent')
         return redirect('/')
-
+    flash_errors(myform)
     """Render the website's about page."""
     return render_template('contact.html', form=myform)
 

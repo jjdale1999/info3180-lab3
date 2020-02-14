@@ -3,20 +3,48 @@
 {% block main %}
     <form method="POST" action="{{ url_for('contact') }}">
         {{ form.csrf_token }} 
-        <div>
-            {{ form.name.label }}  {{form.name}}
+        <div class='lbtxt'>
+            <div>
+                {{ form.name.label }}
+                <label class="req"> (Required) </label>
+            </div>
+            <label>Please enter your first name</label>
+               {{form.name (class="txtbox")}}
         </div>
-        <div>
-            {{ form.email.label }}  {{form.email(placeholder="brownjohn@example.com")}}
+
+        <div class='lbtxt'>
+            <div>
+                {{ form.email.label }} 
+                <label class="req"> (Required) </label>
+            </div>
+            <label>Please enter your email address</label> 
+            {{form.email(class="txtbox",placeholder="brownjohn@example.com")}}
         </div>
-        <div>
-            {{ form.subject.label }}  {{form.subject}}
+
+
+        <div class='lbtxt'>
+            <div>
+                {{ form.subject.label }}
+                <label class="req"> (Required) </label>
+            </div>
+             <label>Please enter the subject of your message</label>  
+             {{form.subject (class="txtbox")}}
         </div>
+
+
+        <div class='lbtxt'>
+            <div>
+                {{ form.message.label }}
+                <label class="req"> (Required) </label>
+            </div>
+           <label>Please enter the message you want to send</label>   
+           {{form.message }}
+        </div>
+
+
         <div>
-            {{ form.message.label }}  {{form.message}}
+            <button type="submit"> Send </button>
         </div>
         
-
-        <button type="submit">Go</button>
        </form>
     {% endblock %}
